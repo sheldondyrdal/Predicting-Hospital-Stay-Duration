@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .prediction {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Predikert sykehusopphold</h1>
+<h3>Fyll inn med data som er tilgjengelig fra dag 1.</h3>
+
+<form action="/predict" method="post">
+    <h2>Demografisk data</h2>
+    <label for="alder">Alder:</label>
+    <input type="text" id="alder" name="alder">
+    <br><br>
+
+    <label for="kjønn">Kjønn:</label>
+	<select id="kjønn" name="kjønn" required>
+        <option value="" disabled selected>Velg alternativ</option>
+	    <option value="male">Mann</option>
+	    <option value="female">Dame</option>
+        <option value="NaN">Annet</option>
+        <option value="NaN">Vil ikke si</option>
+	</select> 
+    <br><br>
+
+    <label for="utdanning">Antall år med utdanning:</label>
+    <input type="text" id="utdanning" name="utdanning">
+    <br><br>
+
+    <label for="etnisitet">Etnisitet:</label>
+    <select id="etnisitet" name="etnisitet" required>
+        <option value="" disabled selected>Velg alternativ</option>
+	    <option value="white">Hvit</option>
+        <option value="black">Svart</option>
+        <option value="hispanic">Latinsk</option>
+        <option value="asian">Asiatisk</option>
+        <option value="other">Annen</option>
+        <option value="NaN">Vil ikke si</option>
+	</select> 
+    <br><br>
+
+    <h2>Sykdomsalvorlighet</h2>
+    <label for="sykdom_underkategori">Type sykdom:</label>
+    <select id="sykdom_underkategori" name="sykdom_underkategori" required>
+        <option value="" disabled selected>Velg alternativ</option>
+        <option value="NaN">Ingen</option>
+	    <option value="ARF/MOSF m/Sepsis">ARF/MOSF m/Sepsis</option>
+        <option value="CHF">CHF</option>
+        <option value="COPD">Kols</option>
+        <option value="Colon Cancer">Tykktarmskreft</option>
+        <option value="Lung Cancer">Lungekreft</option>
+        <option value="MOSF w/Malig">MOSF w/Malig</option>
+        <option value="Coma">Koma</option>
+        <option value="Cirrhosis">Cirrhose</option>
+        <option value="NaN">Vil ikke si</option>
+	</select> 
+    <br><br>
+
+    <label for="antall_komorbiditeter">Antall samtidige sykdommer:</label>
+    <input type="text" id="antall_komorbiditeter" name="antall_komorbiditeter">
+    <br><br>
+
+    <label for="diabetes">Har pasienten diabetes?:</label>
+    <select id="diabetes" name="diabetes" required>
+        <option value="" disabled selected>Velg alternativ</option>
+	    <option value="1">Ja</option>
+        <option value="0">Nei</option>
+        <option value="NaN">Vil ikke si</option>
+	</select> 
+    <br><br>
+
+    <label for="demens">Har pasienten demens?:</label>
+    <select id="demens" name="demens" required>
+        <option value="" disabled selected>Velg alternativ</option>
+	    <option value="1">Ja</option>
+        <option value="0">Nei</option>
+        <option value="NaN">Vil ikke si</option>
+	</select> 
+    <br><br>
+
+    <label for="kreft">Har pasienten kreft?:</label>
+    <select id="kreft" name="kreft" required>
+        <option value="" disabled selected>Velg alternativ</option>
+	    <option value="yes">Ja</option>
+        <option value="metastatic">Ja, metastatisk kreft</option>
+        <option value="no">Nei</option>
+        <option value="NaN">Vil ikke si</option>
+	</select> 
+    <br><br>
+
+    <h2>Fysiologisk data</h2>
+    <label for="blodtrykk">Blodtrykk:</label>
+    <input type="text" id="blodtrykk" name="blodtrykk">
+    <br><br>
+
+    <label for="hvite_blodlegemer">Antall hvite blodlegemer:</label>
+    <input type="text" id="hvite_blodlegemer" name="hvite_blodlegemer" placeholder="målt i tusen">
+    <br><br>
+
+    <label for="hjertefrekvens">Hjertefrekvens:</label>
+    <input type="text" id="hjertefrekvens" name="hjertefrekvens">
+    <br><br>
+
+    <label for="respirasjonsfrekvens">Respirasjonsfrekvens:</label>
+    <input type="text" id="respirasjonsfrekvens" name="respirasjonsfrekvens">
+    <br><br>
+
+    <label for="kroppstemperatur">Kroppstemperatur:</label>
+    <input type="text" id="kroppstemperatur" name="kroppstemperatur" placeholder="målt i celsius">
+    <br><br>
+
+    <label for="lungefunksjon">Lungefunksjon:</label>
+    <input type="text" id="lungefunksjon" name="lungefunksjon" placeholder="PaO2/FiO2">
+    <br><br>
+
+    <label for="kreatinin">Målt kreatinin:</label>
+    <input type="text" id="kreatinin" name="kreatinin">
+    <br><br>
+
+    <label for="natrium">Målt natrium:</label>
+    <input type="text" id="natrium" name="natrium">
+    <br><br>
+
+    <label for="blod_ph">Målt arterielt blod-ph:</label>
+    <input type="text" id="blod_ph" name="blod_ph">
+    <br><br>
+
+    <h4>Data gitt av en modell</h4>
+    <label for="koma_score">Koma-score basert på Glasgow-skalaen: </label>
+    <input type="text" id="koma_score" name="koma_score">
+    <br><br>
+
+    <label for="fysiologisk_score">Fysiologisk score: </label>
+    <input type="text" id="fysiologisk_score" name="fysiologisk_score">
+    <br><br>
+
+    <label for="apache_fysiologisk_score">Apache III fysiologisk score: </label>
+    <input type="text" id="apache_fysiologisk_score" name="apache_fysiologisk_score">
+    <br><br>
+
+    <label for="overlevelsesestimat_2mnd">Modellert 2-måneders overlevelsesestimat: </label>
+    <input type="text" id="overlevelsesestimat_2mnd" name="overlevelsesestimat_2mnd">
+    <br><br>
+
+    <label for="overlevelsesestimat_6mnd">Modellert 6-måneders overlevelsesestimat: </label>
+    <input type="text" id="overlevelsesestimat_6mnd" name="overlevelsesestimat_6mnd">
+    <br><br>
+
+    <h4>Legens overlevelsesestimat for pasienten</h4>
+    <label for="lege_overlevelsesestimat_2mnd">2-måneders overlevelsesestimat: </label>
+    <input type="text" id="lege_overlevelsesestimat_2mnd" name="lege_overlevelsesestimat_2mnd">
+    <br><br>
+
+    <label for="lege_overlevelsesestimat_6mnd">6-måneders overlevelsesestimat: </label>
+    <input type="text" id="lege_overlevelsesestimat_6mnd" name="lege_overlevelsesestimat_6mnd">
+    <br><br>
+    
+    <input type="submit" value="Send inn">
+    <button type='reset' value='Reset'>Tilbakestill</button>
+
+</form>
+
+<br>
+<div class="prediction">
+    {{prediction_text}}
+</div>
+
+</body>
+</html>
