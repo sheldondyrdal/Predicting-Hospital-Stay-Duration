@@ -7,7 +7,7 @@ This project was part of the course "Introduction to Data Science (INF161)" at t
 - trasnformations.py, filen for hjelpefunksjoner som er fra prosjekt.ipynb
     - Merk at trasnformations.py ikke har noen nye funksjoner i forhold til prosjekt.ipynb, men kreves for å importere funksjonene til app.py
 - app.py, filen som oppdaterer nettsiden, og er den man må kjøre for at nettsiden skal fungere
-- index.html, filen som ansvarlig for skjemaet som brukes på nettsiden, HTML Forms
+- templates/index.html, filen som ansvarlig for skjemaet som brukes på nettsiden, HTML Forms
 
 ## Datapakker som kreves for å kjøre all kode
 - numpy
