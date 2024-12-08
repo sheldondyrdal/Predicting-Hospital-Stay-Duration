@@ -1,5 +1,5 @@
 # Predicting Hospital Stay Duration
-This project is part of the course "Introduction to Data Science (INF161)" at the University of Bergen (UiB). The project is written in Norwegian.
+This project was part of the course "Introduction to Data Science (INF161)" at the University of Bergen (UiB) in Fall 2024. The project is written in Norwegian.
 
 ## Filer
 - prosjekt.ipynb, filen hvor utforskende datanalyse, variabelutvinning og datamodellering skjer
